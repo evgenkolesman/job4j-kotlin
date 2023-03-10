@@ -3,7 +3,7 @@ plugins {
     application
 }
 
-group = "ru.kolesnikov.base"
+group = "ru.kolesnikov"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -20,7 +20,7 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(14)
 }
 
 application {
