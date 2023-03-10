@@ -6,11 +6,7 @@ import java.util.*
 class Xwrite {
 
     fun xWriter(d: Int) {
-        val arr = Array(d) {
-            arrayOfNulls<String>(
-                d
-            )
-        }
+        val arr = Array(d) { arrayOfNulls<String>(d) }
         val bound: Int = d * 10 + d - 10
         for (i in 0 until bound) {
             if (i % 10 < d) {
