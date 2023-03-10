@@ -1,3 +1,5 @@
+package ru.kolesnikov
+
 fun add(first :Int, second :Int) = first + second
 fun subtraction(first :Int, second :Int) = first - second
 fun multiplication(first :Int, second :Int) = first * second

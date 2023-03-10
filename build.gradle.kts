@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    testImplementation ("io.kotlintest:kotlintest-runner-junit5:3.4.2")
 }
 
 tasks.test {
