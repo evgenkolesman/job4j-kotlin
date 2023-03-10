@@ -1,4 +1,4 @@
-package ru.kolesnikov
+package ru.kolesnikov.base
 
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec

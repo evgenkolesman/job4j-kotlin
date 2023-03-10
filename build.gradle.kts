@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test", "1.8.0-RC"))
     testImplementation ("io.kotlintest:kotlintest-runner-junit5:3.4.2")
 }
 
