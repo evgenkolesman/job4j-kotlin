@@ -5,25 +5,25 @@ import org.junit.jupiter.api.Test
 class CalcTest () {
     @Test
     fun add() {
-        assert( add(1, 1) == 2)
+        assert( ru.kolesnikov.base.add(1, 1) == 2)
 
     }
 
     @Test
     fun subtraction() {
-        assert( subtraction(1, 1) == 0)
+        assert( ru.kolesnikov.base.subtraction(1, 1) == 0)
 
     }
 
     @Test
     fun multiplication() {
-        assert( multiplication(1, 1) == 1)
+        assert( ru.kolesnikov.base.multiplication(1, 1) == 1)
 
     }
 
     @Test
     fun division() {
-        assert( division(1, 1) == 1)
+        assert( ru.kolesnikov.base.division(1, 1) == 1)
 
     }
 }

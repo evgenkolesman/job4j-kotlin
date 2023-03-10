@@ -1,4 +1,4 @@
-package ru.kolesnikov
+package ru.kolesnikov.base
 
 fun max(first: Int, second: Int) = if (first > second) first else second
 

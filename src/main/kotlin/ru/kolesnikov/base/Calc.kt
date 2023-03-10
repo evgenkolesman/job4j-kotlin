@@ -1,4 +1,4 @@
-package ru.kolesnikov
+package ru.kolesnikov.base
 
 fun add(first :Int, second :Int) = first + second
 fun subtraction(first :Int, second :Int) = first - second

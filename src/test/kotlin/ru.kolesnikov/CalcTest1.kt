@@ -2,10 +2,10 @@ package ru.kolesnikov
 
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
-import ru.kolesnikov.add
-import ru.kolesnikov.division
-import ru.kolesnikov.multiplication
-import ru.kolesnikov.subtraction
+import ru.kolesnikov.base.add
+import ru.kolesnikov.base.division
+import ru.kolesnikov.base.multiplication
+import ru.kolesnikov.base.subtraction
 
 class CalcTest1 : StringSpec({
     "1 + 1 = 2" {
