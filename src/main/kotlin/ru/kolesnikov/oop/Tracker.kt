@@ -13,7 +13,7 @@ class Tracker private constructor() : Store {
         return item
     }
 
-    override fun add(item: Item?): Item?   {
+    override fun addItem(item: Item?): Item?   {
         items.add(item)
         return item
     }

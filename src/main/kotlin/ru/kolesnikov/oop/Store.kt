@@ -2,7 +2,7 @@ package ru.kolesnikov.oop
 
 interface Store {
 
-    fun add(item: Item?): Item?
+    fun addItem(item: Item?): Item?
     fun replace(id: Int, item: Item?): Boolean
     fun delete(id: Int): Boolean
     fun findAll(): List<Item?>
