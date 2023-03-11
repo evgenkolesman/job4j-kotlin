@@ -8,7 +8,7 @@ class Tracker private constructor() : Store {
     fun getInstance()  : Tracker = Tracker()
 
     fun add(item: Item): Item {
-        item.setId(ids)
+        item.id = ids
         items.add(item)
         return item
     }
@@ -46,7 +46,7 @@ class Tracker private constructor() : Store {
         items
             .asSequence()
             .filterNotNull()
-            .filter { it.getName().equals(key) }
+            .filter { it.name.equals(key) }
             .toList()
 
     override fun findById(id: Int): Item? = if(items.size > id) items.get(id) else null

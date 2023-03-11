@@ -1,6 +1,6 @@
 package ru.kolesnikov.oop
 
-data class Item (private var name: String,
-            private var id: Int)
+data class Item (internal var name: String,
+                 internal var id: Int)
 
 
