@@ -10,8 +10,8 @@ class Xwrite {
         val bound: Int = d * 10 + d - 10
         for (i in 0 until bound) {
             if (i % 10 < d) {
-                if (i / 10 == i % 10 || i / 10 + i % 10 == d - 1) arr[i / 10][i % 10] = "X" else arr[i / 10][i % 10] =
-                    " "
+                if (i / 10 == i % 10 || i / 10 + i % 10 == d - 1) arr[i / 10][i % 10] = "X"
+                else arr[i / 10][i % 10] = " "
             }
         }
 
