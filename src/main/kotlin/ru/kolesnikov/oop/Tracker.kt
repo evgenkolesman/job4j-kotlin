@@ -2,7 +2,7 @@ package ru.kolesnikov.oop
 
 class Tracker private constructor() : Store {
 
-    private val items = ArrayList<Item?>()
+    private val items = ArrayList<Item>()
     private var ids :Int = 1
 
     fun getInstance()  : Tracker = Tracker()
@@ -13,13 +13,13 @@ class Tracker private constructor() : Store {
         return item
     }
 
-    override fun addItem(item: Item?): Item?   {
+    override fun addItem(item: Item): Item   {
         items.add(item)
         return item
     }
 
 
-    override fun replace(id: Int, item: Item?): Boolean {
+    override fun replace(id: Int, item: Item): Boolean {
         return when {
             items.size > id -> {
                 items.removeAt(id)
@@ -40,16 +40,15 @@ class Tracker private constructor() : Store {
 
     }
 
-    override fun findAll(): List<Item?> = items
+    override fun findAll(): ArrayList<Item> = items
 
-    override fun findByName(key: String?): List<Item?> =
+    override fun findByName(key: String): List<Item> =
         items
             .asSequence()
-            .filterNotNull()
-            .filter { it.name.equals(key) }
+            .filter { it.name == key }
             .toList()
 
-    override fun findById(id: Int): Item? = if(items.size > id) items.get(id) else null
+    override fun findById(id: Int): Item = items[id]
 
 
 }
