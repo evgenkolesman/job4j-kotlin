@@ -1,29 +1,26 @@
 package ru.kolesnikov.base
 
-import org.junit.jupiter.api.Test
+import io.kotlintest.shouldBe
+import io.kotlintest.specs.StringSpec
 
-class CalcTest () {
-    @Test
-    fun add() {
-        assert( add(1, 1) == 2)
-
+class CalcTest : StringSpec({
+    "1 + 1 = 2" {
+        add(1, 1) shouldBe 2
     }
 
-    @Test
-    fun subtraction() {
-        assert( subtraction(1, 1) == 0)
-
+    "1 - 1 = 0" {
+        subtraction(1, 1) shouldBe 0
     }
 
-    @Test
-    fun multiplication() {
-        assert( multiplication(1, 1) == 1)
-
+    "1 / 1 = 1" {
+        division(1, 1) shouldBe 1
     }
 
-    @Test
-    fun division() {
-        assert( division(1, 1) == 1)
-
+    "1 * 1 = 1" {
+        multiplication(1, 1) shouldBe 1
     }
-}
+
+
+
+
+})
