@@ -2,6 +2,7 @@ package ru.kolesnikov.base
 
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
+import kotlin.test.assertNull
 
 class ArrayDefragmenatatorTest :StringSpec( {
         "FirstAThirdBSeventhC"{
@@ -12,7 +13,8 @@ class ArrayDefragmenatatorTest :StringSpec( {
             names[3] = "b"
 
             val res = a.defragment(names)
-           ( res[0].equals("a")  && res[1].equals("b")  && res[2].equals("c")  && res[3] == null)  shouldBe true
+            assertNull(res[3])
+            ( res[0].equals("a")  && res[1].equals("b")  && res[2].equals("c"))  shouldBe true
         }
         "FirstAThirdASeventhA"{
             val a = ArrayDefragmentator()
@@ -22,7 +24,8 @@ class ArrayDefragmenatatorTest :StringSpec( {
             names[3] = "a"
 
             val res = a.defragment(names)
-           ( res[0].equals("a") && res[1].equals("a")  && res[2].equals("a")  && res[4] == null )  shouldBe true
+            assertNull(res[4])
+           ( res[0].equals("a") && res[1].equals("a")  && res[2].equals("a") )  shouldBe true
         }
         "WithNullInBetween"{
             val a = ArrayDefragmentator()
@@ -32,13 +35,15 @@ class ArrayDefragmenatatorTest :StringSpec( {
             names[3] = "a"
 
             val res = a.defragment(names)
-           ( res[0].equals("a") && res[1].equals("a") && res[2] == null && res[3] == null )  shouldBe true
+            assertNull(res[2])
+            assertNull(res[3])
+           ( res[0].equals("a") && res[1].equals("a") )  shouldBe true
         }
         "WithAllNull"{
             val a = ArrayDefragmentator()
             val names = arrayOfNulls<String>(10)
-                 val res = a.defragment(names)
-           names.contentEquals(arrayOfNulls<String>(10))  shouldBe true
+            val res = a.defragment(names)
+           res.contentEquals(arrayOfNulls<String>(10))  shouldBe true
         }
 
     })
