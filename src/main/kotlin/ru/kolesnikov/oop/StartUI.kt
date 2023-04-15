@@ -2,26 +2,38 @@ package ru.kolesnikov.oop
 
 import java.util.*
 
-class StartUI private constructor() {
-    companion object {
-        internal val cache = ArrayList<String>()
-        internal fun addString(text: String) = this.cache.add(String.format(" \"%s\" ", text.replace("/add ", "")))
-        internal fun getAll() = println(cache)
-        internal fun getElement(text: String) {
-            val index = text.replace("/element", "")
+class StartUI private constructor() : ActionTracker {
 
-            if (text.replace("/element", "")
-                    .trim() == "") println("введите индекс")
-            else if (index
-                    .trim()
-                    .toInt() > cache.size
-            ) println("Индекс введен не корректно введите его в рамках длины " + cache.size)
-            else println(cache[index.trim().toInt() - 1])
-        }
+    private val cache = ArrayList<String>()
+    override fun addString(text: String) =
+        this.cache.add(
+            String.format(
+                " \"%s\" ",
+                text.replace("/add ", "")
+            )
+        )
 
-        internal fun exit(): Int = 1
+    override fun getAll() = println(cache)
+    override fun getElement(text: String) {
+        val index = text.replace("/element", "")
 
+        if (text.replace("/element", "")
+                .trim() == ""
+        ) println("введите индекс")
+        else if (index
+                .trim()
+                .toInt() > cache.size
+        ) println("Индекс введен не корректно введите его в рамках длины " + cache.size)
+        else println(cache[index.trim().toInt() - 1])
     }
+
+    override fun exit(): Int = 1
+
+    companion object {
+        fun newInstance(): StartUI = StartUI()
+    }
+
+
 }
 
 fun main(args: Array<String>) {
@@ -41,10 +53,11 @@ fun main(args: Array<String>) {
         )
         val scanner = Scanner(System.`in`)
         val nextLine = scanner.nextLine()
-        if (nextLine.startsWith("/add")) StartUI.Companion.addString(nextLine)
-        if (nextLine.startsWith("/get")) StartUI.Companion.getAll()
-        if (nextLine.startsWith("/element")) StartUI.Companion.getElement(nextLine)
-        if (nextLine.startsWith("/end")) exit = StartUI.Companion.exit()
+        val startUI: StartUI = StartUI.newInstance()
+        if (nextLine.startsWith("/add")) startUI.addString(nextLine)
+        if (nextLine.startsWith("/get")) startUI.getAll()
+        if (nextLine.startsWith("/element")) startUI.getElement(nextLine)
+        if (nextLine.startsWith("/end")) exit = startUI.exit()
     }
 
 }
