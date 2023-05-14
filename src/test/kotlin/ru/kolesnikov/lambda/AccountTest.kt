@@ -8,7 +8,7 @@ class AccountTest {
     @Test
     fun filterByIvanTwoResults() {
         val namePredicate = "Ivan"
-        val accList: List<Account> = listOf(
+        val accList = listOf(
             Account(namePredicate, 1),
             Account("Sergey", 1),
             Account("Vasya", 1),
@@ -31,7 +31,7 @@ class AccountTest {
     @Test
     fun filterByIvanNoResult() {
         val namePredicate = "Ivan"
-        val accList: List<Account> = listOf(
+        val accList = listOf(
             Account(namePredicate, -100),
             Account("Sergey", 1),
             Account("Vasya", 1),
