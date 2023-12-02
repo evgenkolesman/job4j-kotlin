@@ -1,10 +1,6 @@
 package ru.kolesnikov.lambda
 
-import java.util.function.Predicate
-
 data class Account(val name: String, val balance: Int) {
-
-    fun filterByName(stringPredicate: String): Predicate<Account>  =
-        Predicate{ this.name == stringPredicate && this.balance > 0 }
-
 }
+fun filterByName(list: List<Account>, stringPredicate: String): List<Account>  =
+    list.filter{acc -> acc.name.equals(stringPredicate) && acc.balance > 0 }

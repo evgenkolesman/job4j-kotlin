@@ -1,13 +1,12 @@
 package ru.kolesnikov.lambda
 
 import org.junit.jupiter.api.Test
-import java.util.stream.Collectors
 
 class AccountTest {
+    val namePredicate = "Ivan"
 
     @Test
     fun filterByIvanTwoResults() {
-        val namePredicate = "Ivan"
         val accList = listOf(
             Account(namePredicate, 1),
             Account("Sergey", 1),
@@ -17,9 +16,8 @@ class AccountTest {
             Account(namePredicate, 0)
         )
 
-        val accounts = accList.stream()
-            .filter { a -> a.filterByName(namePredicate).test(a) }
-            .collect(Collectors.toList())
+        val accounts = filterByName(accList, namePredicate)
+
         assert(accounts[0].name == namePredicate)
         assert(accounts[0].balance == 1)
         assert(accounts[1].name == namePredicate)
@@ -30,7 +28,6 @@ class AccountTest {
 
     @Test
     fun filterByIvanNoResult() {
-        val namePredicate = "Ivan"
         val accList = listOf(
             Account(namePredicate, -100),
             Account("Sergey", 1),
@@ -40,10 +37,8 @@ class AccountTest {
             Account(namePredicate, -3)
         )
 
-        val accounts = accList.stream()
-            .filter { a -> a.filterByName(namePredicate).test(a) }
-            .collect(Collectors.toList())
-        assert(accounts.size == 0)
+        val accounts = filterByName(accList, namePredicate)
+        assert(accounts.isEmpty())
 
     }
 
