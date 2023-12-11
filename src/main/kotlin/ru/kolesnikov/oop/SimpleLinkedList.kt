@@ -1,53 +1,33 @@
 package ru.kolesnikov.oop
 
-import java.util.*
-
-// NOT READY
-class SimpleLinkedList<T> : Iterable<T> {
-    private var head : Node<T>? = null
-
-//    fun add(value: T) {
-//        head = if (head != null) {
-//            Node(head!!.value, Node(value))
-//        } else Node(value)
-//    }
-
+class SimpleLinkedList<T> : Iterable<T>, ListIterator<T> {
+    private var head: Node<T>? = null
     fun add(value: T) {
         if (head != null) {
-            head = Node<T>(value)
+            head = Node(value, null)
         }
-    }
-    fun get(value: Int) :T?  {
-        var n = 0
-        var element: T
-        if(value == 0 ) return this.iterator().next()
-        else do {
-           element = this.iterator().next()
-            n += 1
-        } while(n != value)
-        return element
     }
 
-    fun size():Int {
-        var n = 0
-        while (this.iterator().hasNext()) {
-            this.iterator().next()
-            n++
-        }
-        return n
-    }
-
-    fun remove(value:T) {
-        while (this.iterator().hasNext()) {
-            if(this.iterator().next() == value)  head = null
-        }
-    }
+    fun size() = this.count()
 
     override fun iterator(): Iterator<T> {
         return LinkedIt()
     }
 
-    inner class LinkedIt : Iterator<T> {
+    fun get(index: Int): T? {
+        var res: T? = null
+        if (index < size() - 1) {
+            var ind = 0
+            while (ind == index) {
+                res = iterator().next()
+                ind++
+            }
+        } else throw IndexOutOfBoundsException()
+        return res
+    }
+
+    inner class LinkedIt(val size: Int = 0) : Iterator<T> {
+
         override fun hasNext(): Boolean {
             return head != null
         }
@@ -62,12 +42,42 @@ class SimpleLinkedList<T> : Iterable<T> {
     }
 
     class Node<K>(val value: K, var next: Node<K>? = null)
+
+
+    override fun hasNext(): Boolean = this.next() != null
+
+
+    override fun hasPrevious(): Boolean = indexOf<Any?>(element = this) - 1 > 0
+
+    override fun next(): T {
+        return if (hasNext()) {
+            this.head!!.value
+        } else throw IllegalArgumentException("No value next")
+    }
+
+
+    override fun nextIndex(): Int {
+        var count = 0
+        while (hasNext()) count++
+        return count + 1
+    }
+
+    override fun previous(): T {
+        if (hasPrevious()) {
+            return this.get(indexOf<Any?>(this) - 1)!!
+        } else throw IndexOutOfBoundsException()
+    }
+
+    override fun previousIndex(): Int {
+        val i = indexOf<Any?>(this) - 1
+        if (i < 0) throw IndexOutOfBoundsException()
+        return i
+    }
 }
 
-//fun main() {
-//    val node = SimpleLinkedList.Node("Kotlin")
-//    val list = SimpleLinkedList<String>()
-//    for (value in list) {
-//        println(value)
-//    }
-//}
+fun main() {
+    val list = SimpleLinkedList<String>()
+    for (value in list) {
+        println(value)
+    }
+}

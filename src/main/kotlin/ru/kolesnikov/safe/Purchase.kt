@@ -11,10 +11,11 @@ import javax.xml.transform.TransformerFactory
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
 
-data class Purchase (
+data class Purchase(
     val name: String,
     val created: Date,
-    val address: Address? )
+    val address: Address?
+)
 
 class Address(private val street: String, private val home: String, private val zip: String) {
     override fun toString(): String {
@@ -23,38 +24,38 @@ class Address(private val street: String, private val home: String, private val 
 }
 
 
-fun getHtml(content: List<Purchase>) =  DocumentBuilderFactory
+fun getHtml(content: List<Purchase>) = DocumentBuilderFactory
     .newInstance()
     .newDocumentBuilder()
     .newDocument()
     .create.html {
-    head {
-        title("Purchases")
-    }
-    body {
-        h1("h1Class") {
-            +"Table of purchases"
+        head {
+            title("Purchases")
         }
-        p("headerTable") {
-            +"|Name|Date|Address|"
-        }
-        content.forEach { pur ->
-           p("purchase") {
-                +"|"
-                + pur.name
-                +"|"
-                +pur.created.toString()
-                +"|"
-                +String.format("%s", pur.address ?: " ")
-                +"|"
+        body {
+            h1("h1Class") {
+                +"Table of purchases"
             }
-        }
+            p("headerTable") {
+                +"|Name|Date|Address|"
+            }
+            content.forEach { pur ->
+                p("purchase") {
+                    +"|"
+                    +pur.name
+                    +"|"
+                    +pur.created.toString()
+                    +"|"
+                    +String.format("%s", pur.address ?: " ")
+                    +"|"
+                }
+            }
 
+        }
     }
-}
 
 fun intoStream(doc: Element, out: OutputStream) {
-    with(TransformerFactory.newInstance().newTransformer()){
+    with(TransformerFactory.newInstance().newTransformer()) {
         transform(
             DOMSource(doc),
             StreamResult(OutputStreamWriter(out, "UTF-8"))
