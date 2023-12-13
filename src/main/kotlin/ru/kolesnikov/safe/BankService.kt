@@ -8,26 +8,20 @@ class BankService {
         users.putIfAbsent(user, ArrayList())
     }
 
-    private fun findByRequisite(passport: String, requisite: String): Account? {
-        val user = findByPassport(passport) ?: return null
-        return users[user]?.firstOrNull { account -> account.requisite == requisite }
+    private fun findByRequisite(passport: String, requisite: String): Account? =
+        findByPassport(passport).let { user ->
+            users[user]?.firstOrNull { account ->
+                account.requisite == requisite
+            }
+        }
 
-    }
-
-    fun addAccount(passport: String, account: Account) {
-        val user = findByPassport(passport) ?:
-        return
+    fun addAccount(passport: String, account: Account) = findByPassport(passport).let { user ->
         users[user]?.add(account)
     }
 
 
     fun findByPassport(passport: String): User? {
-        for (user in users.keys) {
-            if (user.passportNumber == passport) {
-                return user
-            }
-        }
-        return null
+        return users.keys.firstOrNull { it.passportNumber == passport }
     }
 
     fun transferMoney(
@@ -36,8 +30,8 @@ class BankService {
     ): Boolean {
         val source = findByRequisite(srcPassport, srcRequisite)
         val dest = findByRequisite(destPassport, descRequisite)
-        source ?. apply { balance.minus(amount.toFloat()) }
-        dest ?.apply { balance + amount.toFloat() }
+        source?.apply { balance.minus(amount.toFloat()) }
+        dest?.apply { balance + amount.toFloat() }
         return true
     }
 
