@@ -15,6 +15,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:$kotlinxHtmlVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-html:$kotlinxHtmlVersion")
+    implementation("org.postgresql:postgresql:42.5.1")
 
     testImplementation(kotlin("test", "1.8.0-RC"))
     testImplementation ("io.kotlintest:kotlintest-runner-junit5:3.4.2")
