@@ -2,40 +2,39 @@ package ru.kolesnikov.oop
 
 class SimpleLinkedList<T> : Iterable<T>  {
 
-    var modCount = 0
-    var head: Node<T> = Node(null)
+    private var modCount = 0
+    private var head: Node<T> = Node(null)
     private var count = 0
 
     fun add(data: T) {
         val newNode = Node(data)
-        newNode.next = this.head.next
-        this.head.next = newNode
-        this.count++
-        this.modCount++
+        newNode.next = head.next
+        head.next = newNode
+        count++
+        modCount++
     }
 
     fun get(index: Int): T {
         if (isOutOfBounds(index)) {
             throw IndexOutOfBoundsException()
         }
-        var result: Node<T> = this.head
-        for (value in 0 until index) {
+        var result: Node<T> = head
+        for (value in 0 ..  index) {
             result = result.next!!
         }
         return result.data!!
     }
 
-    private fun isOutOfBounds(index: Int): Boolean {
-        return index >= count || index < 0
-    }
+    private fun isOutOfBounds(index: Int) = index >= count || index < 0
+
 
     class Node<T>(var data: T?, var next: Node<T>? = null)
 
     inner class LinkedIt : Iterator<T> {
-        private var headIter: Node<T> = head
+        private var headIter = head
         private var expectedModCount: Int = modCount
 
-        override fun hasNext(): Boolean = headIter.next != null
+        override fun hasNext() = headIter.next != null
         override fun next(): T {
             if (expectedModCount != modCount) {
                 throw IllegalArgumentException()
@@ -54,12 +53,12 @@ class SimpleLinkedList<T> : Iterable<T>  {
         return LinkedIt()
     }
 
-    inner class LinkedList(): ListIterator<T> {
-        var headIter: Node<T> = head
-        var expectedModCount: Int = modCount
+    inner class LinkedList : ListIterator<T> {
+        private var headIter = head
+        private var expectedModCount = modCount
 
 
-        override fun hasNext(): Boolean = headIter.next != null
+        override fun hasNext() = headIter.next != null
         override fun next(): T {
             if (expectedModCount != modCount) {
                 throw IllegalArgumentException()
@@ -67,7 +66,7 @@ class SimpleLinkedList<T> : Iterable<T>  {
             if (!hasNext()) {
                 throw NoSuchElementException()
             }
-            val result: T = headIter.next!!.data!!
+            val result = headIter.next!!.data!!
             headIter = headIter.next!!
             return result
         }
