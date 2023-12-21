@@ -1,6 +1,6 @@
 package ru.kolesnikov.oop
 
-class SimpleLinkedList<T> : Iterable<T>  {
+class SimpleLinkedList<T> : Iterable<T> {
 
     private var modCount = 0
     private var head: Node<T> = Node(null)
@@ -19,7 +19,7 @@ class SimpleLinkedList<T> : Iterable<T>  {
             throw IndexOutOfBoundsException()
         }
         var result: Node<T> = head
-        for (value in 0 ..  index) {
+        for (value in 0..index) {
             result = result.next!!
         }
         return result.data!!
@@ -49,9 +49,7 @@ class SimpleLinkedList<T> : Iterable<T>  {
 
     }
 
-    override fun iterator(): Iterator<T> {
-        return LinkedIt()
-    }
+    override fun iterator(): Iterator<T> = LinkedIt()
 
     inner class LinkedList : ListIterator<T> {
         private var headIter = head
@@ -71,31 +69,22 @@ class SimpleLinkedList<T> : Iterable<T>  {
             return result
         }
 
-        override fun hasPrevious(): Boolean  {
-            return expectedModCount - 1 < 0
-
-        }
+        override fun hasPrevious() = expectedModCount - 1 < 0
 
 
-        override fun nextIndex(): Int {
-            return expectedModCount + 1
-        }
+        override fun nextIndex() = expectedModCount + 1
 
-        override fun previous(): T {
-            if(expectedModCount - 1 < 0) throw IndexOutOfBoundsException()
-            return get(expectedModCount - 1)
-        }
+        override fun previous(): T = if (expectedModCount - 1 < 0) throw IndexOutOfBoundsException()
+                                     else get(expectedModCount - 1)
 
-        override fun previousIndex(): Int {
-            if(expectedModCount - 1 < 0) throw IndexOutOfBoundsException()
-            return expectedModCount - 1
-        }
+        override fun previousIndex() = if (expectedModCount - 1 < 0) throw IndexOutOfBoundsException()
+                                       else expectedModCount - 1
+
 
     }
 
-    fun listIterator(): Iterator<T> {
-        return LinkedList()
-    }
+    fun listIterator(): Iterator<T> = LinkedList()
+
 }
 
 fun main() {
