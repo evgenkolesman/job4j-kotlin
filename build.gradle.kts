@@ -13,7 +13,7 @@ repositories {
 dependencies {
     val kotlinxHtmlVersion = "0.10.1"
     val dbcp2Version = "2.11.0"
-    val hibernateVersion = "5.4.20.Final"
+    val hibernateVersion = "5.5.0.Final"
     val postgresVersion = "42.5.1"
     val junitKotlinRunnerVersion = "3.4.2"
 
