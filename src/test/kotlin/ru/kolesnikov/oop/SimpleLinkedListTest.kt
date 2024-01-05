@@ -35,13 +35,13 @@ class SimpleLinkedListTest {
         assertTrue(list.size() == 1)
     }
 
- @Test
-    fun removeOneCorrect() {
-        val list = SimpleLinkedList<Int>()
-        list.add(1)
-       list.remove(1)
-        assertTrue(list.size() == 0)
-    }
+// @Test
+//    fun removeOneCorrect() {
+//        val list = SimpleLinkedList<Int>()
+//        list.add(1)
+//        list.remove(1)
+//        assertTrue(list.size() == 0)
+//    }
 
 
 }

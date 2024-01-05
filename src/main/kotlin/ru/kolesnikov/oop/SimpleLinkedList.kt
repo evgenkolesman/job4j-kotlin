@@ -6,6 +6,8 @@ class SimpleLinkedList<T> : Iterable<T> {
     private var head: Node<T> = Node(null)
     private var count = 0
 
+    fun size() = count
+
     fun add(data: T) {
         val newNode = Node(data)
         newNode.next = head.next
@@ -24,6 +26,7 @@ class SimpleLinkedList<T> : Iterable<T> {
         }
         return result.data!!
     }
+
 
     private fun isOutOfBounds(index: Int) = index >= count || index < 0
 
